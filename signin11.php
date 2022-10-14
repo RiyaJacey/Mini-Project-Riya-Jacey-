@@ -1,6 +1,7 @@
 <?php 
 require_once("DBConnection.php"); 
 //include("function1.php");
+session_start();
 ?>
 
 <?php
@@ -32,11 +33,17 @@ require_once("DBConnection.php");
 					$_SESSION['sess_eid']=$id;
 					//Redirect Browser
 					mysqli_query($conn,"INSERT INTO `tbl_login`( `name`, `pass`, `type`) VALUES ('$name','$pass','$type')");
-					if($type=="admin"){
-						header("Location:signup11.php");
+					if($type=="admin")
+					{
+						header("Location:../web/index.html");
 					}
-					else{
-					header("Location:signup11.php");
+					else if($type=="user")
+					{
+					header("Location:userdb.html");
+					}
+					else if($type=="vendor")
+					{
+					header("Location:vendordb.html");
 					}
                     return true;
 				}
@@ -114,7 +121,7 @@ require_once("DBConnection.php");
 									</label>
 								</div>
 								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Forgot Password</a>
+									<a href="forgotpass.php" type="submit" name="submit" value="submit" style="color: #fff">Forgot Password</a>
 								</div>
 	            </div>
 	          </form>
@@ -136,4 +143,3 @@ require_once("DBConnection.php");
 
 	</body>
 </html>
-
